@@ -100,12 +100,17 @@ class Level{
         this.maxLevel = maxLevel;
     }
 
-    setLevel(){
-
+    setLevel(currentLevel){
+        this.currentLevel = currentLevel;
     }
 
     getCurrentLevel(){
-        
+        return this.currentLevel
+    }
+
+    displayLevel(){
+        fill(255);
+        text('Level : ' + this.currentLevel , 30, 16);
     }
 }
 
@@ -183,12 +188,42 @@ class Map{
     }
 
     init(){
+        background(0);
+        fill(color(255,255,0))
+        textAlign(CENTER);
+        text('THE YELLOW HUNTER GAME!!!', width / 2, height / 2.2);
+        text('Press up arrow to start', width / 2, height / 1.95);
+        if(keyIsDown(UP_ARROW)){
+            start = 2;
+        }
 
     }
 
     move(){
-        
+        if(keyIsDown(DOWN_ARROW)){
+            return true;
+        }
     }
+
+  }
+
+function setup() {
+  map = new Map(500,500);
+
+  createCanvas(map.width, map.height);
+
+  xdir= Math.pow(-1,Math.floor(Math.random()*10));
+  ydir= Math.pow(-1,Math.floor(Math.random()*10));
+
+  hero = new Hero(100, 0, 30, 30, 250, 250);
+  monster = new Monster(1, 255, 0, 'monster', 30, 30, 70, 30, 2, xdir, ydir)
+  boss = new Monster(1, 255, 0, 'bos', 50, 50, 350, 480, 1, xdir, ydir)
+  creep = new Monster(1, 255, 0, 'creep', 20, 20, 490, 400, 2, xdir, ydir)
+  creep2 = new Monster(1, 255, 0, 'creep_2', 20, 20, 350, 400, 2, xdir, ydir)
+  monster2 = new Monster(1, 255, 0, 'monster_2', 30, 30, 200, 100, 2, xdir, ydir)
+  hittable_monster = new Monster(1, 255, 0, 'point_monster', 30, 30, 247, 230, 1, xdir, ydir)
+  lvl = new Level(1 , 0, 5)
+
 }
 
 function draw() {
