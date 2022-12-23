@@ -110,39 +110,69 @@ class Level{
 }
 
 class Monster extends Entity{
-    constructor(life, color, effect, type){
+    constructor(life, color, effect, type, height, width, x, y,speed=1, xDir=1, yDir=1){
+        super(height, width, x, y);
+        this.speed = speed;
+        this.xDirection = xDir;
+        this.yDirection = yDir;
         this.life = life;
         this.color = color;
         this.effect = effect;
         this.type = type;
     }
 
-    moveRandom(){
+    setSpeed(speed){
+        this.speed = speed;
+    }
 
+    moveRandom(){
+        this.x += this.speed*this.xDirection;
+        this.y += this.speed*this.yDirection;
+        if (this.x>=width || this.x <= 0)
+        this.xDirection *= -1;
+    
+        if (this.y>=height || this.y <= 0)
+        this.yDirection *= -1;
     }
 
     saveScore(){
-
+        fill(255);
+        text('Score : ' + hero.score, 450, 16);
+        text('Health : ' + hero.life, 250, 16);
     }
 }
 
 class Hero extends Entity{
-    constructor(life, score, skill){
+    constructor(life, score, height, width, x, y){
+        super(height, width, x, y);
         this.life = life;
         this.score = score;
-        this.skill = skill;
     }
 
     increaseScore(){
-
+        if(this.attack() == true){
+        this.score += 1;
+        }
     }
 
     calculateLife(){
-
+        if(hero.hit()==true){
+            this.life -= 1;
+        }
     }
+  
 
     saveScore(){
-
+        background(0);
+        fill(color(255,255,0))
+        textAlign(CENTER);
+        text('GAME OVER', width / 2, height / 3);
+        text('SCORE : '+ this.score, width / 2, height / 2.5);
+        text('LATEST LEVEL : '+ lvl.getCurrentLevel(), width / 2, height / 2.3);
+        text('Nama : Iqbal Al Hafidzu Rahman (2117051019)', width / 2, height / 1.8)
+        text('Nama : Muhammad Rafi Satria (2117051046)', width / 2, height / 1.65)
+        text('Nama : Enjelita Aini Natasya (2117051028)', width / 2, height / 1.53)
+        text('Press down arrow to restart', width / 2, height / 1.1)
     }
 }
 
