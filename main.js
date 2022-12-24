@@ -221,7 +221,7 @@ function setup() {
   creep = new Monster(1, 255, 0, 'creep', 20, 20, 490, 400, 2, xdir, ydir)
   creep2 = new Monster(1, 255, 0, 'creep_2', 20, 20, 350, 400, 2, xdir, ydir)
   monster2 = new Monster(1, 255, 0, 'monster_2', 30, 30, 200, 100, 2, xdir, ydir)
-  hittable_monster = new Monster(1, 255, 0, 'point_monster', 30, 30, 247, 230, 1, xdir, ydir)
+  hittable_monster = new Monster(1, 255, 0, 'point_monster', 30, 30, 247, 100, 1, xdir, ydir)
   lvl = new Level(1 , 0, 5)
 
 }
